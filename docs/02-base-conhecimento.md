@@ -47,7 +47,44 @@ A integração do conhecimento com o modelo (Ollama) ocorre em duas camadas dist
 1. **Injeção Estática (Regras e Diretrizes):** O conteúdo dos arquivos `regras_precificacao.md` e `boas_praticas_caixa.md` é injetado integralmente no *System Prompt* no momento em que a sessão é criada. Isso garante que a SócIA tenha as fórmulas financeiras, a persona e as travas de segurança operando como a base do seu "raciocínio" em todas as interações.
 2. **Injeção Dinâmica (Dados de Vendas):** O histórico de transações (`.csv`) **não** é inserido inteiro no prompt. O sistema realiza uma consulta dinâmica: quando o usuário faz uma pergunta sobre faturamento ou vendas de um dia específico, o backend filtra o *dataframe* do Pandas e injeta no prompt apenas o recorte de dados relevante para aquela pergunta específica, fornecendo o contexto exato que a IA precisa para calcular a resposta sem estourar o limite de contexto do LLM local.
 
----
+Para garantir a performance da aplicação e evitar a leitura repetida dos arquivos a cada nova mensagem, os dados são carregados utilizando cache:
+
+```python
+import pandas as pd
+import streamlit as st
+import os
+
+# Definição dos caminhos para a pasta data/
+DATA_DIR = "data"
+REGRAS_PATH = os.path.join(DATA_DIR, "regras_precificacao.md")
+BOAS_PRATICAS_PATH = os.path.join(DATA_DIR, "boas_praticas_caixa.md")
+VENDAS_PATH = os.path.join(DATA_DIR, "historico_vendas_exemplo.csv")
+
+@st.cache_data
+def carregar_regras_estaticas(caminho_arquivo):
+    """
+    Lê os arquivos de texto (.md) da base de conhecimento.
+    O decorador @st.cache_data evita que o arquivo seja lido 
+    novamente a cada interação do usuário no chat.
+    """
+    with open(caminho_arquivo, "r", encoding="utf-8") as file:
+        return file.read()
+
+@st.cache_data
+def carregar_dados_dinamicos(caminho_arquivo):
+    """
+    Lê o histórico de transações (.csv) usando Pandas.
+    A coluna 'Data' já é convertida para o formato datetime para 
+    facilitar os filtros que serão injetados dinamicamente no prompt.
+    """
+    df = pd.read_csv(caminho_arquivo, parse_dates=['Data'])
+    return df
+
+# Inicializando o contexto na sessão do Streamlit
+regras_prompt = carregar_regras_estaticas(REGRAS_PATH)
+boas_praticas_prompt = carregar_regras_estaticas(BOAS_PRATICAS_PATH)
+df_historico_vendas = carregar_dados_dinamicos(VENDAS_PATH)
+```
 
 ## Exemplo de Contexto Montado
 
