@@ -157,6 +157,10 @@ Essa é uma das situações mais comuns no empreendedorismo, mas nós vamos orga
 
 > Registre aqui ajustes que você fez nos prompts e por quê.
 
-- **Few-Shot Prompting:** Ao implementar as travas de segurança (como recusar orientações legais ou contábeis), a IA tendia a ser muito robótica e rude (ex: "Não posso responder isso"). A adição de exemplos reais de conversas (*Few-Shot Prompting*) no prompt ensinou o modelo a dizer "não" mantendo a persona empática e sempre oferecendo uma alternativa dentro do escopo (ex: "Não posso atuar como contador, mas posso ajudar a organizar as planilhas para ele").
-- **Otimização de Contexto (Token Limits):** O maior desafio técnico foi lidar com o limite de contexto do LLM. Inserir um `.csv` com milhares de linhas de vendas diretamente no prompt quebrava o modelo. A solução foi criar uma arquitetura híbrida: as diretrizes de negócio (`.md`) entram estaticamente no *System Prompt*, enquanto os dados transacionais (`.csv`) são filtrados pelo backend (via Pandas) e injetados dinamicamente apenas com o recorte exato da pergunta do usuário.
-- **Calibragem da Persona:** Pequenos empreendedores frequentemente misturam finanças pessoais com as da empresa, e uma IA muito punitiva causaria atrito. O prompt foi ajustado para forçar o uso da primeira pessoa do plural ("nós", "vamos analisar") e celebrar vitórias antes de corrigir um erro financeiro. Isso tornou a ferramenta mais acolhedora sem perder a autoridade técnica.
+## Observações e Aprendizados (Decisões de Design)
+
+> Registre aqui ajustes que você fez nos prompts e por quê.
+
+- **Prevenção de Alucinação na Raiz:** Durante a estruturação da base de conhecimento, percebi que apenas proibir a IA de falar sobre investimentos no prompt poderia não ser 100% seguro se os arquivos `produtos_financeiros.json` e `perfil_investidor.json` continuassem na pasta. A decisão foi remover esses dados do projeto para garantir que o modelo nem sequer tenha o vocabulário para alucinar fora do escopo.
+- **Uso de Few-Shot Prompting para Ajuste de Tom:** Ao desenhar o *System Prompt*, notei que criar regras rígidas (como "Nunca atue como contador") poderia deixar as respostas robóticas ou mal-educadas. A solução foi adicionar os Exemplos de Comportamento (Few-Shot), mostrando para a IA como negar um pedido mantendo a persona empática e consultiva da SócIA.
+- **Planejamento da Injeção de Contexto:** Como o objetivo é rodar o LLM localmente, estruturei a documentação prevendo um gargalo de limite de tokens. O aprendizado aqui foi desenhar uma arquitetura onde apenas as regras (`.md`) ficam fixas no prompt, enquanto os dados de vendas (`.csv`) deverão ser filtrados e injetados apenas quando necessário, poupando processamento.
