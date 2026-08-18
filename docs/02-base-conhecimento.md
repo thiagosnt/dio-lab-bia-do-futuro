@@ -53,7 +53,7 @@ A integração do conhecimento com o modelo (Ollama) ocorre em duas camadas dist
 
 > Mostre um exemplo de como os dados são formatados para o agente.
 
-baixo está um exemplo prático de como o backend monta o *prompt* final que é enviado para o modelo (Ollama) quando o usuário faz uma pergunta sobre as vendas do dia 01/10/2023. O sistema concatena as regras fixas com um recorte dinâmico dos dados:
+Abaixo está um exemplo prático de como o backend monta o *prompt* final que é enviado para o modelo (Ollama) quando o usuário faz uma pergunta sobre as vendas do dia 01/10/2023. O sistema concatena as regras fixas com um recorte dinâmico dos dados:
 
 ```text
 [SYSTEM]
