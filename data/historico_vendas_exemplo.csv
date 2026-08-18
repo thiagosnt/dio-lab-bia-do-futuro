@@ -1,0 +1,21 @@
+Data,Produto,Categoria,Preco_Unitario,Quantidade,Receita_Total,Meio_Pagamento
+2023-10-01,Café Expresso,Bebidas,6.50,2,13.00,Pix
+2023-10-01,Pão de Queijo,Salgados,7.00,3,21.00,Cartao Debito
+2023-10-01,Cappuccino,Bebidas,12.00,1,12.00,Cartao Credito a Vista
+2023-10-02,Bolo de Cenoura,Doces,10.00,2,20.00,Pix
+2023-10-02,Café Expresso,Bebidas,6.50,1,6.50,Cartao Debito
+2023-10-02,Croissant,Salgados,14.00,1,14.00,Cartao Credito a Vista
+2023-10-03,Cappuccino,Bebidas,12.00,2,24.00,Cartao Credito Parcelado
+2023-10-03,Pão de Queijo,Salgados,7.00,1,7.00,Pix
+2023-10-03,Suco de Laranja,Bebidas,8.00,2,16.00,Cartao Debito
+2023-10-04,Torta de Maçã,Doces,15.00,1,15.00,Cartao Credito a Vista
+2023-10-04,Café Expresso,Bebidas,6.50,3,19.50,Pix
+2023-10-04,Pão de Queijo,Salgados,7.00,2,14.00,Cartao Debito
+2023-10-05,Cappuccino,Bebidas,12.00,1,12.00,Pix
+2023-10-05,Croissant,Salgados,14.00,2,28.00,Cartao Credito Parcelado
+2023-10-05,Bolo de Cenoura,Doces,10.00,1,10.00,Cartao Debito
+2023-10-06,Suco de Laranja,Bebidas,8.00,1,8.00,Pix
+2023-10-06,Café Expresso,Bebidas,6.50,2,13.00,Cartao Credito a Vista
+2023-10-06,Torta de Maçã,Doces,15.00,2,30.00,Cartao Debito
+2023-10-07,Pão de Queijo,Salgados,7.00,4,28.00,Pix
+2023-10-07,Cappuccino,Bebidas,12.00,2,24.00,Cartao Credito Parcelado
