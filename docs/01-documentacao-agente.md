@@ -61,7 +61,7 @@ flowchart TD
 | Componente | Descrição |
 |------------|-----------|
 | Interface | [Chatbot em Streamlit](https://streamlit.io/) |
-| LLM | [Ollama (local)} |
+| LLM | [Ollama (local)] |
 | Base de Conhecimento | [Arquivos de texto (.md) contendo regras de cálculo de margem e guias de fluxo de caixa e/ou JSON/CSV com dados do cliente] |
 | Validação | [Prompt de sistema com regras rígidas de contorno (guardrails) para garantir que o assistente não responda fora do contexto de negócios] |
 
