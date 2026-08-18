@@ -29,18 +29,15 @@ Defina **o que** seu agente faz e **como** ele funciona:
 
 ---
 
-### 2. Base de Conhecimento
+### 2. Base de Conhecimento (adaptado)
 
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
+Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar o agente:
 
 | Arquivo | Formato | Descrição |
 |---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
+| `regras_precificacao.md` | Markdown | Diretrizes matemáticas de precificação, cálculo de custos e margem de lucro. |
+| `boas_praticas_caixa.md` | Markdown | Regras sobre gestão de fluxo de caixa e separação entre contas PF e PJ. |
+| `historico_vendas_exemplo.csv` | CSV | Histórico simulado de vendas diárias e meios de pagamento para testes de cálculo. |
 
 📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
 
